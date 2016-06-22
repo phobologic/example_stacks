@@ -1,0 +1,9 @@
+#!/bin/bash
+# This is a shell script that runs stacker within a docker container.
+
+exec docker run -v `pwd`:/stacks \
+  --name $(git rev-parse HEAD) --rm \
+  -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+  -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+  -e AWS_SECURITY_TOKEN=$AWS_SESSION_TOKEN \
+  remind101/stacker:master $@
